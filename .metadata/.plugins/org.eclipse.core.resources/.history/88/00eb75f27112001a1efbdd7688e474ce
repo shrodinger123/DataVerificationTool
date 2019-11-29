@@ -1,0 +1,8 @@
+import java.sql.*;
+public class DataFetcher {
+
+	public boolean verifyRowCount(Connection dbConn, String tbName, String rowCount ) {
+		Boolean result = true;
+		return result;
+	}
+}

@@ -1,0 +1,21 @@
+
+public class DVLauncher {
+	
+	
+
+	public static void main(String[] args) {
+		
+		/* extract information from arguments passed
+		/* Read config file and assign values to variables */
+		
+		
+		
+	}
+
+
+	private static void readConfig() {
+		
+	}
+
+}
+

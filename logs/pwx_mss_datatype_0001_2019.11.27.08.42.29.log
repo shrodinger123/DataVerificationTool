@@ -1,0 +1,28 @@
+2019-11-27 08:42:29,402 [main] INFO  DVLauncher  - ===== Test Details =====
+2019-11-27 08:42:29,403 [main] INFO  DVLauncher  - TestID : pwx_mss_datatype_0001
+2019-11-27 08:42:29,405 [main] INFO  DVLauncher  - SrcID : my_pgs
+2019-11-27 08:42:29,405 [main] INFO  DVLauncher  - TgtID : my_pgs
+2019-11-27 08:42:29,412 [main] INFO  DVLauncher  - Source Schema : aniket
+2019-11-27 08:42:29,414 [main] INFO  DVLauncher  - Target Schema : akadam
+2019-11-27 08:42:29,415 [main] INFO  DVLauncher  - Table Mapping : [{ora0001(#15,pk,col2,col3) : ora0002(#15,pk,col2,col3)};{ora0003(#10,pk,col1,col4) : ora0004(#10,pk,col1,col2)};{ora0005(#10,*) : ora0006(#10,*)}]
+2019-11-27 08:42:29,449 [main] INFO  DVLauncher  - Log Dir : C:/akadam/Work/PowerExchange/v1040/data_validation_tool/logs
+2019-11-27 08:42:29,449 [main] INFO  DVLauncher  - ===== Source DB Details =====
+2019-11-27 08:42:29,451 [main] INFO  DVLauncher  - Type : PGS
+2019-11-27 08:42:29,457 [main] INFO  DVLauncher  - Version : 11
+2019-11-27 08:42:29,458 [main] INFO  DVLauncher  - Host : mhvr16db02
+2019-11-27 08:42:29,460 [main] INFO  DVLauncher  - User : ilqa
+2019-11-27 08:42:29,467 [main] INFO  DVLauncher  - Password : ilqa
+2019-11-27 08:42:29,467 [main] INFO  DVLauncher  - Port : 5432
+2019-11-27 08:42:29,468 [main] INFO  DVLauncher  - DBName : pwxtest
+2019-11-27 08:42:29,469 [main] INFO  DVLauncher  - ===== Target DB Details =====
+2019-11-27 08:42:29,471 [main] INFO  DVLauncher  - Type : PGS
+2019-11-27 08:42:29,478 [main] INFO  DVLauncher  - Version : 11
+2019-11-27 08:42:29,479 [main] INFO  DVLauncher  - Host : mhvr16db02
+2019-11-27 08:42:29,481 [main] INFO  DVLauncher  - User : ilqa
+2019-11-27 08:42:29,482 [main] INFO  DVLauncher  - Password : ilqa
+2019-11-27 08:42:29,488 [main] INFO  DVLauncher  - Port : 5432
+2019-11-27 08:42:29,488 [main] INFO  DVLauncher  - DBName : pwxtest
+2019-11-27 08:42:31,427 [main] INFO  DVLauncher  - Employee number = -1231
+2019-11-27 08:42:31,428 [main] INFO  DVLauncher  - **** Fetched all rows from JDBC ResultSet
+2019-11-27 08:42:31,429 [main] INFO  DVLauncher  - **** Closed JDBC ResultSet
+2019-11-27 08:42:31,436 [main] INFO  DVLauncher  - **** Closed JDBC Statement

@@ -1,0 +1,46 @@
+<databases>
+	<source>
+		<id>ora_12.1_mhvlx7pwx01</id>
+		<type>ORACLE</type>
+		<version>12.1</version>
+		<server>mhvlx7pwx01</server>
+		<user>aniket</user>
+		<password>aniket</password>
+		<port>1521</port>
+		<db>rhqa7121</db>
+	</source>
+
+	<source>
+		<id>mss_16_rds</id>
+		<type>MSSQL</type>
+		<version>16</version>
+		<server>pwxqa-rds-mssql-2016.cdztqno64b6m.us-east-1.rds.amazonaws.com</server>
+		<user>aniket</user>
+		<password>aniket</password>
+		<port>1433</port>
+		<db>AniketDB</db>
+	</source>
+
+	<source>
+		<id>mss_17_rds</id>
+		<type>MSSQL</type>
+		<version>17</version>
+		<server>pwxqa-rds-mssql-2017.cdztqno64b6m.us-east-1.rds.amazonaws.com</server>
+		<user>aniket</user>
+		<password>aniket</password>
+		<port>1433</port>
+		<db>AniketDB</db>
+	</source>
+
+	<source>
+		<id>mss_14_rds</id>
+		<type>MSSQL</type>
+		<version>14</version>
+		<server>pwxqa-rds-mssql-2014.cdztqno64b6m.us-east-1.rds.amazonaws.com</server>
+		<user>aniket</user>
+		<password>aniket</password>
+		<port>1433</port>
+		<db>AniketDB</db>
+	</source>
+
+</databases>

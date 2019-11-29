@@ -1,0 +1,59 @@
+import java.sql.*;
+public class DBConnBuilder {
+
+	private Connection conn;
+	
+	public Connection getDB2LUWConn(String user, String pwd, String host, String port, String dbname) {
+		
+		try {
+			String url="jdbc:db2://"+host+":"+port+"/"+dbname;
+			
+			// Load the driver
+		      Class.forName("com.ibm.db2.jcc.DB2Driver");       
+		      conn = DriverManager.getConnection (url, user, pwd); 
+		      
+		     // Commit changes automatically
+		      conn.setAutoCommit(true);
+		      
+		    // Create the Statement
+		     Statement stmt = conn.createStatement();
+		     
+		    // Execute a query and generate a ResultSet instance
+		      ResultSet rs = stmt.executeQuery("select key_col from ilqasrc.numeric_src"); 
+	
+		      // Print all of the employee numbers to standard output device
+		      while (rs.next()) {
+		        empNo = rs.getString(1);
+		        System.out.println("Employee number = " + empNo);
+		      }
+		      System.out.println("**** Fetched all rows from JDBC ResultSet");
+		      // Close the ResultSet
+		      rs.close();
+		      System.out.println("**** Closed JDBC ResultSet");
+		      
+		      // Close the Statement
+		      stmt.close();
+		      System.out.println("**** Closed JDBC Statement");
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return conn;
+	}
+	
+	public Connection getOracleConn(String user, String pwd, String host, String port, String dbname) {
+		return conn;
+	}
+	
+	public Connection getPgConn(String user, String pwd, String host, String port, String dbname) {
+		return conn;
+	}
+	
+	public Connection getMSSConn(String user, String pwd, String host, String port, String dbname) {
+		return conn;
+	}
+		
+	public Connection getMYSConn(String user, String pwd, String host, String port, String dbname) {
+		return conn;
+	}
+}

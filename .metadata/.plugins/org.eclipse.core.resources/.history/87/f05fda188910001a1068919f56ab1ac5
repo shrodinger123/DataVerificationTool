@@ -1,0 +1,8 @@
+import java.sql.*;
+public class DBConnBuilder {
+	
+	public Conn getDB2LUWConn(String user, String pwd, String host, String port, String dbname) {
+		
+	}
+		
+}

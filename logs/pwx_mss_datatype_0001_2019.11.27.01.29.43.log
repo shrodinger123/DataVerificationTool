@@ -1,0 +1,24 @@
+2019-11-27 01:29:44,078 [main] INFO  DVLauncher  - ===== Test Details =====
+2019-11-27 01:29:44,079 [main] INFO  DVLauncher  - TestID : pwx_mss_datatype_0001
+2019-11-27 01:29:44,080 [main] INFO  DVLauncher  - SrcID : mss_16_rds
+2019-11-27 01:29:44,080 [main] INFO  DVLauncher  - TgtID : mss_16_rds
+2019-11-27 01:29:44,081 [main] INFO  DVLauncher  - Source Schema : aniket
+2019-11-27 01:29:44,082 [main] INFO  DVLauncher  - Target Schema : akadam
+2019-11-27 01:29:44,082 [main] INFO  DVLauncher  - Table Mapping : [
+2019-11-27 01:29:44,083 [main] INFO  DVLauncher  - Log Dir : C:/akadam/Work/PowerExchange/v1040/data_validation_tool/logs
+2019-11-27 01:29:44,084 [main] INFO  DVLauncher  - ===== Source DB Details =====
+2019-11-27 01:29:44,085 [main] INFO  DVLauncher  - Type : MSSQL
+2019-11-27 01:29:44,085 [main] INFO  DVLauncher  - Version : 16
+2019-11-27 01:29:44,086 [main] INFO  DVLauncher  - Host : 16
+2019-11-27 01:29:44,086 [main] INFO  DVLauncher  - User : aniket
+2019-11-27 01:29:44,087 [main] INFO  DVLauncher  - Password : aniket
+2019-11-27 01:29:44,088 [main] INFO  DVLauncher  - Port : 1433
+2019-11-27 01:29:44,090 [main] INFO  DVLauncher  - DBName : AniketDB
+2019-11-27 01:29:44,090 [main] INFO  DVLauncher  - ===== Target DB Details =====
+2019-11-27 01:29:44,093 [main] INFO  DVLauncher  - Type : MSSQL
+2019-11-27 01:29:44,093 [main] INFO  DVLauncher  - Version : 16
+2019-11-27 01:29:44,094 [main] INFO  DVLauncher  - Host : 16
+2019-11-27 01:29:44,095 [main] INFO  DVLauncher  - User : aniket
+2019-11-27 01:29:44,095 [main] INFO  DVLauncher  - Password : aniket
+2019-11-27 01:29:44,096 [main] INFO  DVLauncher  - Port : 1433
+2019-11-27 01:29:44,097 [main] INFO  DVLauncher  - DBName : AniketDB

@@ -1,0 +1,24 @@
+2019-11-27 08:17:50,267 [main] INFO  DVLauncher  - ===== Test Details =====
+2019-11-27 08:17:50,268 [main] INFO  DVLauncher  - TestID : pwx_mss_datatype_0001
+2019-11-27 08:17:50,269 [main] INFO  DVLauncher  - SrcID : my_udb
+2019-11-27 08:17:50,269 [main] INFO  DVLauncher  - TgtID : my_udb
+2019-11-27 08:17:50,269 [main] INFO  DVLauncher  - Source Schema : aniket
+2019-11-27 08:17:50,269 [main] INFO  DVLauncher  - Target Schema : akadam
+2019-11-27 08:17:50,270 [main] INFO  DVLauncher  - Table Mapping : [{ora0001(#15,pk,col2,col3) : ora0002(#15,pk,col2,col3)};{ora0003(#10,pk,col1,col4) : ora0004(#10,pk,col1,col2)};{ora0005(#10,*) : ora0006(#10,*)}]
+2019-11-27 08:17:50,297 [main] INFO  DVLauncher  - Log Dir : C:/akadam/Work/PowerExchange/v1040/data_validation_tool/logs
+2019-11-27 08:17:50,297 [main] INFO  DVLauncher  - ===== Source DB Details =====
+2019-11-27 08:17:50,297 [main] INFO  DVLauncher  - Type : DB2LUW
+2019-11-27 08:17:50,298 [main] INFO  DVLauncher  - Version : 11
+2019-11-27 08:17:50,298 [main] INFO  DVLauncher  - Host : mhvredhat6
+2019-11-27 08:17:50,298 [main] INFO  DVLauncher  - User : ilqa
+2019-11-27 08:17:50,298 [main] INFO  DVLauncher  - Password : ilqa
+2019-11-27 08:17:50,299 [main] INFO  DVLauncher  - Port : 50000
+2019-11-27 08:17:50,299 [main] INFO  DVLauncher  - DBName : ilqasrc
+2019-11-27 08:17:50,299 [main] INFO  DVLauncher  - ===== Target DB Details =====
+2019-11-27 08:17:50,299 [main] INFO  DVLauncher  - Type : DB2LUW
+2019-11-27 08:17:50,300 [main] INFO  DVLauncher  - Version : 11
+2019-11-27 08:17:50,300 [main] INFO  DVLauncher  - Host : mhvredhat6
+2019-11-27 08:17:50,300 [main] INFO  DVLauncher  - User : ilqa
+2019-11-27 08:17:50,300 [main] INFO  DVLauncher  - Password : ilqa
+2019-11-27 08:17:50,300 [main] INFO  DVLauncher  - Port : 50000
+2019-11-27 08:17:50,301 [main] INFO  DVLauncher  - DBName : ilqasrc

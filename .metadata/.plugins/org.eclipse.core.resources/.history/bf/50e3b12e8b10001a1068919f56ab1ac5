@@ -1,0 +1,35 @@
+import java.sql.*;
+public class DBConnBuilder {
+
+	private Connection conn;
+	
+	public Connection getDB2LUWConn(String user, String pwd, String host, String port, String dbname) {
+		
+		try {
+			String urlPrefix = "jdbc:db2://";
+			String url=urlPrefix+host+":"+port+"/"+dbname+":usr="+user+";password="+pwd+";";
+			
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return conn;
+	}
+	
+	public Connection getOracleConn(String user, String pwd, String host, String port, String dbname) {
+		return conn;
+	}
+	
+	public Connection getPgConn(String user, String pwd, String host, String port, String dbname) {
+		return conn;
+	}
+	
+	public Connection getMSSConn(String user, String pwd, String host, String port, String dbname) {
+		return conn;
+	}
+		
+	public Connection getMYSConn(String user, String pwd, String host, String port, String dbname) {
+		return conn;
+	}
+}

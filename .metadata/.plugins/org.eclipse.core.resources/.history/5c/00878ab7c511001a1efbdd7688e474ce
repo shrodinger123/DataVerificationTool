@@ -1,0 +1,280 @@
+import java.io.File;
+import java.sql.*;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Properties;
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PatternLayout;
+import org.apache.log4j.RollingFileAppender;
+import java.text.SimpleDateFormat;
+public class DVLauncher {
+	
+	private static String test_id;
+	private static String src_id;
+	private static String tgt_id;
+	private static String src_schema;
+	private static String tgt_schema;
+	private static String tb_map;
+	private static String log_dir;
+	private static final Logger log = Logger.getLogger(DVLauncher.class);
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+	
+	private static String src_db_type;
+	private static String src_db_version;
+	private static String src_db_user;
+	private static String src_db_pwd;
+	private static String src_db_name;
+	private static String src_db_host;
+	private static String src_db_port;
+	private static Connection src_db_conn;
+	
+	private static String tgt_db_type;
+	private static String tgt_db_version;
+	private static String tgt_db_user;
+	private static String tgt_db_pwd;
+	private static String tgt_db_name;
+	private static String tgt_db_host;
+	private static String tgt_db_port;
+	private static Connection tgt_db_conn;
+	
+	
+	private static LinkedHashMap<String,String> srcTotgtTBmapping = new LinkedHashMap<String,String>(); 
+	
+	public static void main(String[] args) {
+		
+		String testconf=args[0];
+		
+		/* Read config files and assign values to variables */
+		parseTestConfig(args[0]);
+		
+		/* Set logging requirements */
+		setLogging();
+		
+		/* From src_id fetch db details from datasources.xml */
+		getSourceDBDetails();
+		
+		/* From tgt_id fetch db details from datasources.xml */
+		getTargetDBDetails();
+			
+		/* Print test details to log file */
+		printTestDetails();
+		
+		/* get source db connection and test */
+		getSrcDbConn();
+	   
+		/* get target db connection */
+		getTgtDbConn();
+		
+		/* Parse source and target tables to be compared */
+		parseTableMapping();
+		
+		/* Verify data for each source-target table pair */
+		
+		verifyData();
+		 
+	}
+	
+	private static void getSrcDbConn() {
+		DBConnBuilder dbcon = new DBConnBuilder();
+		switch(src_db_type) {
+		case "DB2LUW":
+			src_db_conn=dbcon.getDB2LUWConn(src_db_user, src_db_pwd, src_db_host, src_db_port, src_db_name);
+			break;
+		case "PGS":
+			src_db_conn=dbcon.getPgConn(src_db_user, src_db_pwd, src_db_host, src_db_port, src_db_name);
+			break;
+		case "MSSQL":
+			src_db_conn=dbcon.getMSSConn(src_db_user, src_db_pwd, src_db_host, src_db_port, src_db_name);
+			break;
+		case "MYSQL":
+			src_db_conn=dbcon.getMYSConn(src_db_user, src_db_pwd, src_db_host, src_db_port, src_db_name);
+			break;
+		case "ORACLE":
+			src_db_conn=dbcon.getOracleConn(src_db_user, src_db_pwd, src_db_host, src_db_port, src_db_name);
+			break;
+		}	
+		
+		// Create the Statement
+	     Statement stmt;
+		try {
+			stmt = src_db_conn.createStatement();
+			 // Execute a query and generate a ResultSet instance
+		      ResultSet rs = stmt.executeQuery("select pk from src.datatype_inttypes"); 
+
+		      // Print all of the employee numbers to standard output device
+		      String pk;
+		      while (rs.next()) {
+		        pk = rs.getString(1);
+		        log.info("Employee number = " + pk);
+		      }
+		      log.info("**** Fetched all rows from JDBC ResultSet");
+		      // Close the ResultSet
+		      rs.close();
+		     log.info("**** Closed JDBC ResultSet");
+		      
+		      // Close the Statement
+		      stmt.close();
+		      log.info("**** Closed JDBC Statement");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	     
+	   
+	      
+	}
+	
+	private static void getTgtDbConn() {
+		DBConnBuilder dbcon = new DBConnBuilder();
+		switch(tgt_db_type) {
+		case "DB2LUW":
+			tgt_db_conn=dbcon.getDB2LUWConn(tgt_db_user, tgt_db_pwd, tgt_db_host, tgt_db_port, tgt_db_name);
+			break;
+		case "PGS":
+			tgt_db_conn=dbcon.getPgConn(tgt_db_user, tgt_db_pwd, tgt_db_host, tgt_db_port, tgt_db_name);
+			break;
+		case "MSSQL":
+			tgt_db_conn=dbcon.getMSSConn(tgt_db_user, tgt_db_pwd, tgt_db_host, tgt_db_port, tgt_db_name);
+			break;
+		case "MYSQL":
+			tgt_db_conn=dbcon.getMYSConn(tgt_db_user, tgt_db_pwd, tgt_db_host, tgt_db_port, tgt_db_name);
+			break;
+		case "ORACLE":
+			tgt_db_conn=dbcon.getOracleConn(tgt_db_user, tgt_db_pwd, tgt_db_host, tgt_db_port, tgt_db_name);
+			break;
+		}
+	}
+
+	private static void printTestDetails() {
+		log.info("===== Test Details =====");
+	    log.info("TestID : "+test_id);
+	    log.info("SrcID : "+src_id);
+	    log.info("TgtID : "+tgt_id);
+	    log.info("Source Schema : "+src_schema);
+	    log.info("Target Schema : "+tgt_schema);
+	    log.info("Table Mapping : "+tb_map);
+	    log.info("Log Dir : "+log_dir);
+	    
+	    log.info("===== Source DB Details =====");
+		log.info("Type : "+src_db_type );
+		log.info("Version : "+src_db_version );
+		log.info("Host : "+src_db_host );
+		log.info("User : "+src_db_user );
+		log.info("Password : "+src_db_pwd );
+		log.info("Port : "+src_db_port );
+		log.info("DBName : "+src_db_name );
+		
+		log.info("===== Target DB Details =====");
+		log.info("Type : "+tgt_db_type );
+		log.info("Version : "+tgt_db_version );
+		log.info("Host : "+tgt_db_host );
+		log.info("User : "+tgt_db_user );
+		log.info("Password : "+tgt_db_pwd );
+		log.info("Port : "+tgt_db_port );
+		log.info("DBName : "+tgt_db_name );
+		
+	}
+
+	private static void setLogging() {
+		//This is the root logger provided by log4j
+		Logger rootLogger = Logger.getRootLogger();
+		rootLogger.setLevel(Level.INFO);
+		
+		//Define log pattern layout
+		PatternLayout layout = new PatternLayout("%d{ISO8601} [%t] %-5p %c %x - %m%n");
+		
+		
+		//Add console appender to root logger
+		rootLogger.addAppender(new ConsoleAppender(layout));
+
+		try
+		{	
+		//Define file appender with layout and output log file name
+		String timestamp_suffix=sdf.format(new Timestamp(System.currentTimeMillis()));
+		String fpath = log_dir+"/"+test_id+"_"+timestamp_suffix+".log";
+		RollingFileAppender fileAppender = new RollingFileAppender(layout, fpath);
+		 
+		//Add the appender to root logger
+		rootLogger.addAppender(fileAppender);
+		}
+		catch (IOException e)
+		{
+		System.out.println("Failed to add appender !!");
+		}
+	}
+
+
+
+	private static void getSourceDBDetails() {
+		// TODO Auto-generated method stub
+		DBParser xp = new DBParser();
+		src_db_type = xp.getDbType(src_id);
+		src_db_version = xp.getDbVersion(src_id);
+		src_db_host = xp.getDbHost(src_id);
+		src_db_user = xp.getDbUser(src_id);
+		src_db_pwd = xp.getDbPwd(src_id);
+		src_db_port = xp.getDbPort(src_id);
+		src_db_name = xp.getDbName(src_id);		
+	}
+	
+	private static void getTargetDBDetails() {
+		// TODO Auto-generated method stub
+		DBParser xp = new DBParser();
+		tgt_db_type = xp.getDbType(tgt_id);
+		tgt_db_version = xp.getDbVersion(tgt_id);
+		tgt_db_host = xp.getDbHost(tgt_id);
+		tgt_db_user = xp.getDbUser(tgt_id);
+		tgt_db_pwd = xp.getDbPwd(tgt_id);
+		tgt_db_port = xp.getDbPort(tgt_id);
+		tgt_db_name = xp.getDbName(tgt_id);	
+	}
+
+
+	private static void parseTestConfig(String testconf) {
+		File configFile = new File(testconf);
+		 
+		try {
+		    FileReader reader = new FileReader(configFile);
+		    Properties props = new Properties();
+		    props.load(reader);
+		    
+		    test_id = props.getProperty("test_id");
+		    src_id = props.getProperty("src_id");
+		    tgt_id = props.getProperty("tgt_id");
+		    src_schema = props.getProperty("src_schema");
+		    tgt_schema = props.getProperty("tgt_schema");
+		    tb_map = props.getProperty("tb_map");
+		    log_dir = props.getProperty("log_dir");	
+		 
+		    
+		    reader.close();
+		} catch (FileNotFoundException ex) {
+		    // file does not exist
+		} catch (IOException ex) {
+		    // I/O error
+		}
+	}
+	
+	private static void parseTableMapping() {
+		
+		String tb_map_nosquarebrackets = tb_map.substring(1,tb_map.length()-1);
+		String[] tb_map_arr = tb_map_nosquarebrackets.split(";");
+		
+		/* populate 'srcTotgtTBmapping' HashMap with*/
+		for (int i=0; i<tb_map_arr.length;i++) {
+			
+			String single_tb_map_nobraces = tb_map_arr[i].substring(1,tb_map_arr[i].length()-1);		
+			String src_tb_section = single_tb_map_nobraces.split(":")[0];
+			String tgt_tb_section = single_tb_map_nobraces.split(":")[1];	
+			srcTotgtTBmapping.put(src_tb_section,tgt_tb_section);
+		}
+		
+	}
+
+}
+

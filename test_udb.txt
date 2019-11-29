@@ -1,0 +1,7 @@
+test_id=test_udb
+src_id=my_udb
+tgt_id=my_udb
+src_schema=ilqasrc
+tgt_schema=ilqatgt
+tb_map=[{dv_src#5#order_by=(pk)#cols=(pk,col1) : dv_tgt#5#order_by=(pk)#cols=(pk,col1)}]
+log_dir=C:/akadam/Work/PowerExchange/v1040/data_validation_tool/logs

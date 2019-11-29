@@ -1,0 +1,10 @@
+import java.sql.*;
+public class DBConnBuilder {
+
+	private Connection conn;
+	
+	public Connection getDB2LUWConn(String user, String pwd, String host, String port, String dbname) {
+		return conn;
+	}
+		
+}

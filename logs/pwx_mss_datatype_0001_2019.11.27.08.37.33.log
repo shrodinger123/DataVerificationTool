@@ -1,0 +1,24 @@
+2019-11-27 08:37:33,875 [main] INFO  DVLauncher  - ===== Test Details =====
+2019-11-27 08:37:33,876 [main] INFO  DVLauncher  - TestID : pwx_mss_datatype_0001
+2019-11-27 08:37:33,878 [main] INFO  DVLauncher  - SrcID : my_pgs
+2019-11-27 08:37:33,878 [main] INFO  DVLauncher  - TgtID : my_pgs
+2019-11-27 08:37:33,885 [main] INFO  DVLauncher  - Source Schema : aniket
+2019-11-27 08:37:33,886 [main] INFO  DVLauncher  - Target Schema : akadam
+2019-11-27 08:37:33,888 [main] INFO  DVLauncher  - Table Mapping : [{ora0001(#15,pk,col2,col3) : ora0002(#15,pk,col2,col3)};{ora0003(#10,pk,col1,col4) : ora0004(#10,pk,col1,col2)};{ora0005(#10,*) : ora0006(#10,*)}]
+2019-11-27 08:37:33,889 [main] INFO  DVLauncher  - Log Dir : C:/akadam/Work/PowerExchange/v1040/data_validation_tool/logs
+2019-11-27 08:37:33,895 [main] INFO  DVLauncher  - ===== Source DB Details =====
+2019-11-27 08:37:33,895 [main] INFO  DVLauncher  - Type : PGS
+2019-11-27 08:37:33,896 [main] INFO  DVLauncher  - Version : 11
+2019-11-27 08:37:33,903 [main] INFO  DVLauncher  - Host : mhvredhat6
+2019-11-27 08:37:33,904 [main] INFO  DVLauncher  - User : ilqa
+2019-11-27 08:37:33,905 [main] INFO  DVLauncher  - Password : ilqa
+2019-11-27 08:37:33,905 [main] INFO  DVLauncher  - Port : 5432
+2019-11-27 08:37:33,906 [main] INFO  DVLauncher  - DBName : pwxtest
+2019-11-27 08:37:33,907 [main] INFO  DVLauncher  - ===== Target DB Details =====
+2019-11-27 08:37:33,907 [main] INFO  DVLauncher  - Type : PGS
+2019-11-27 08:37:33,908 [main] INFO  DVLauncher  - Version : 11
+2019-11-27 08:37:33,908 [main] INFO  DVLauncher  - Host : mhvredhat6
+2019-11-27 08:37:33,909 [main] INFO  DVLauncher  - User : ilqa
+2019-11-27 08:37:33,909 [main] INFO  DVLauncher  - Password : ilqa
+2019-11-27 08:37:33,910 [main] INFO  DVLauncher  - Port : 5432
+2019-11-27 08:37:33,911 [main] INFO  DVLauncher  - DBName : pwxtest

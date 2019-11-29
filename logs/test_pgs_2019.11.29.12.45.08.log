@@ -1,0 +1,28 @@
+2019-11-29 12:45:08,775 [main] INFO  DVLauncher  - ===== Test Details =====
+2019-11-29 12:45:08,776 [main] INFO  DVLauncher  - TestID : test_pgs
+2019-11-29 12:45:08,776 [main] INFO  DVLauncher  - SrcID : my_pgs
+2019-11-29 12:45:08,777 [main] INFO  DVLauncher  - TgtID : my_pgs
+2019-11-29 12:45:08,778 [main] INFO  DVLauncher  - Source Schema : src
+2019-11-29 12:45:08,779 [main] INFO  DVLauncher  - Target Schema : tgt
+2019-11-29 12:45:08,779 [main] INFO  DVLauncher  - Table Mapping : [{dv_src#5#order_by=(pk)#cols=(pk,col1):dv_tgt#4#order_by=(pk)#cols=(pk,col1)}]
+2019-11-29 12:45:08,808 [main] INFO  DVLauncher  - Log Dir : C:/akadam/Work/PowerExchange/v1040/data_validation_tool/logs
+2019-11-29 12:45:08,808 [main] INFO  DVLauncher  - ===== Source DB Details =====
+2019-11-29 12:45:08,810 [main] INFO  DVLauncher  - Type : PGS
+2019-11-29 12:45:08,818 [main] INFO  DVLauncher  - Version : 11
+2019-11-29 12:45:08,820 [main] INFO  DVLauncher  - Host : mhvr16db02
+2019-11-29 12:45:08,820 [main] INFO  DVLauncher  - User : ilqa
+2019-11-29 12:45:08,827 [main] INFO  DVLauncher  - Password : ilqa
+2019-11-29 12:45:08,828 [main] INFO  DVLauncher  - Port : 5432
+2019-11-29 12:45:08,830 [main] INFO  DVLauncher  - DBName : pwxtest
+2019-11-29 12:45:08,836 [main] INFO  DVLauncher  - ===== Target DB Details =====
+2019-11-29 12:45:08,837 [main] INFO  DVLauncher  - Type : PGS
+2019-11-29 12:45:08,837 [main] INFO  DVLauncher  - Version : 11
+2019-11-29 12:45:08,839 [main] INFO  DVLauncher  - Host : mhvr16db02
+2019-11-29 12:45:08,840 [main] INFO  DVLauncher  - User : ilqa
+2019-11-29 12:45:08,847 [main] INFO  DVLauncher  - Password : ilqa
+2019-11-29 12:45:08,848 [main] INFO  DVLauncher  - Port : 5432
+2019-11-29 12:45:08,848 [main] INFO  DVLauncher  - DBName : pwxtest
+2019-11-29 12:45:11,013 [main] INFO  DVLauncher  - ===== Data Verification Starting ... =====
+2019-11-29 12:45:11,013 [main] INFO  DVLauncher  - >> Starting verification for source-table =  src.dv_src and target-table = tgt.dv_tgt<< 
+2019-11-29 12:45:11,192 [main] INFO  DVLauncher  - Success: row-count for source-table src.dv_src = 5
+2019-11-29 12:45:11,366 [main] INFO  DVLauncher  - Success: row-count for target-table tgt.dv_tgt = 4

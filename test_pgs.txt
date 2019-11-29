@@ -1,0 +1,7 @@
+test_id=test_pgs
+src_id=my_pgs
+tgt_id=my_pgs
+src_schema=src
+tgt_schema=tgt
+tb_map=[{dv_src#5#order_by=(pk)#cols=(pk,col1):dv_tgt#4#order_by=(pk)#cols=(pk,col1)}]
+log_dir=C:/akadam/Work/PowerExchange/v1040/data_validation_tool/logs

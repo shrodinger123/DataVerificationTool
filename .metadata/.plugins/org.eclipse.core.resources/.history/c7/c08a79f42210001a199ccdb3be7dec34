@@ -1,0 +1,42 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
+
+public class DVLauncher {
+	
+	
+
+	public static void main(String[] args) {
+		
+		/* Read config file and assign values to variables */
+		readTestConfig();
+		
+		
+	}
+
+
+	private static void readConfig() {
+		
+		
+		File configFile = new File("config.properties");
+		 
+		try {
+		    FileReader reader = new FileReader(configFile);
+		    Properties props = new Properties();
+		    props.load(reader);
+		 
+		    String host = props.getProperty("host");
+		 
+		    System.out.print("Host name is: " + host);
+		    reader.close();
+		} catch (FileNotFoundException ex) {
+		    // file does not exist
+		} catch (IOException ex) {
+		    // I/O error
+		}
+	}
+
+}
+

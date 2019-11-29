@@ -1,0 +1,62 @@
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathFactory;
+import javax.xml.parsers.DocumentBuilder;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Element;
+import java.io.File;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
+
+public class DBParser {
+	
+	private Document doc;
+	
+	public DBParser(){
+		try {
+			File fXmlFile = new File("./datasources.xml");
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			doc = dBuilder.parse(fXmlFile);
+			//optional, but recommended
+			//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+			doc.getDocumentElement().normalize();
+			//NodeList nList = doc.getElementsByTagName("instance");
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}		
+		
+	}
+	
+	private Element getElement(String db_id);
+	public String getDbType(String db_id) {
+		String dbType="";
+		try {
+			
+			XPath xpath = XPathFactory.newInstance().newXPath();
+			XPathExpression expr;
+			expr = xpath.compile("//instance[@id=\""+db_id+"\"]");
+			Object exprResult = expr.evaluate(doc, XPathConstants.NODESET);
+			NodeList nodeList = (NodeList) exprResult;
+			Element el = (Element)nodeList.item(0);
+			dbType=el.getElementsByTagName("type").item(0).getTextContent();
+			
+		} catch (XPathExpressionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dbType;		
+	}
+	
+//	src_db_version = xp.getDbVersion(src_id);
+//	src_db_host = xp.getDbHost(src_id);
+//	src_db_user = xp.getDbUser(src_id);
+//	src_db_pwd = xp.getDbPwd(src_id);
+//	src_db_port = xp.getDbPort(src_id);
+//	src_db_name = xp.getDbName(src_id);
+	
+	
+}

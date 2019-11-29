@@ -1,0 +1,36 @@
+import java.sql.*;
+public class DataFetcher {
+
+	public int verifyRowCount(Connection dbConn, String tbName, String rowCount ) {
+		int result = 0;
+
+		// Create the Statement
+	     Statement stmt;
+		try {
+			stmt = dbConn.createStatement();
+			String row_count_stmt = "Select count(*) from "+tbName;
+		      ResultSet rs = stmt.executeQuery("select pk from src.datatype_inttypes"); 
+
+		      // Print all of the employee numbers to standard output device
+		      String pk;
+		      while (rs.next()) {
+		        pk = rs.getString(1);
+		        log.info("Employee number = " + pk);
+		      }
+		      log.info("**** Fetched all rows from JDBC ResultSet");
+		      // Close the ResultSet
+		      rs.close();
+		     log.info("**** Closed JDBC ResultSet");
+		      
+		      // Close the Statement
+		      stmt.close();
+		      log.info("**** Closed JDBC Statement");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	     
+	   
+		return result;
+	}
+}

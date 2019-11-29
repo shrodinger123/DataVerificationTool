@@ -1,0 +1,120 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Properties;
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PatternLayout;
+import org.apache.log4j.RollingFileAppender;
+import java.text.SimpleDateFormat;
+
+public class DVLauncher {
+	
+	private static String test_id;
+	private static String src_id;
+	private static String tgt_id;
+	private static String src_schema;
+	private static String tgt_schema;
+	private static String tb_map;
+	private static String log_dir;
+	private static final Logger log = Logger.getLogger(DVLauncher.class);
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+	
+	public static void main(String[] args) {
+		
+		
+		
+		String testconf=args[0];
+		
+		/* Read config files and assign values to variables */
+		parseTestConfig(args[0]);
+		
+		/* Set logging requirements */
+		setLogging();
+		
+		/* test print configs */
+		log.info(test_id);
+		log.info(src_id);
+		log.info(tgt_id);
+		log.info(src_schema);
+		log.info(tgt_schema);
+		log.info(tb_map);
+		log.info(log_dir);
+		
+		
+	
+
+		getSourceDBDetails();
+		getTargetDBDetails();
+		
+
+	}
+
+
+	private static void setLogging() {
+		//This is the root logger provided by log4j
+		Logger rootLogger = Logger.getRootLogger();
+		rootLogger.setLevel(Level.DEBUG);
+		
+		//Define log pattern layout
+		PatternLayout layout = new PatternLayout("%d{ISO8601} [%t] %-5p %c %x - %m%n");
+		
+		
+		//Add console appender to root logger
+		rootLogger.addAppender(new ConsoleAppender(layout));
+
+		try
+		{	
+		//Define file appender with layout and output log file name
+		String fpath = log_dir+"/"+test_id+"_"+(new Timestamp(System.currentTimeMillis()))+".log";
+		System.out.println(fpath);
+		RollingFileAppender fileAppender = new RollingFileAppender(layout, fpath);
+		 
+		//Add the appender to root logger
+		rootLogger.addAppender(fileAppender);
+		}
+		catch (IOException e)
+		{
+		System.out.println("Failed to add appender !!");
+		}
+	}
+	private static void getTargetDBDetails() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	private static void getSourceDBDetails() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	private static void parseTestConfig(String testconf) {
+		File configFile = new File(testconf);
+		 
+		try {
+		    FileReader reader = new FileReader(configFile);
+		    Properties props = new Properties();
+		    props.load(reader);
+		    
+		    test_id = props.getProperty("test_id");
+		    src_id = props.getProperty("src_id");
+		    tgt_id = props.getProperty("tgt_id");
+		    src_schema = props.getProperty("src_schema");
+		    tgt_schema = props.getProperty("tgt_schema");
+		    tb_map = props.getProperty("tb_map");
+		    log_dir = props.getProperty("log_dir");	    
+		    reader.close();
+		} catch (FileNotFoundException ex) {
+		    // file does not exist
+		} catch (IOException ex) {
+		    // I/O error
+		}
+	}
+
+}
+

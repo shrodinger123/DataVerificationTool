@@ -1,0 +1,28 @@
+2019-11-29 12:28:49,668 [main] INFO  DVLauncher  - ===== Test Details =====
+2019-11-29 12:28:49,670 [main] INFO  DVLauncher  - TestID : test_udb
+2019-11-29 12:28:49,670 [main] INFO  DVLauncher  - SrcID : my_udb
+2019-11-29 12:28:49,671 [main] INFO  DVLauncher  - TgtID : my_udb
+2019-11-29 12:28:49,671 [main] INFO  DVLauncher  - Source Schema : ilqasrc
+2019-11-29 12:28:49,671 [main] INFO  DVLauncher  - Target Schema : ilqatgt
+2019-11-29 12:28:49,671 [main] INFO  DVLauncher  - Table Mapping : [{dv_src#5#order_by=(pk)#cols=(pk,col1) : dv_tgt#5#order_by=(pk)#cols=(pk,col1)}]
+2019-11-29 12:28:49,698 [main] INFO  DVLauncher  - Log Dir : C:/akadam/Work/PowerExchange/v1040/data_validation_tool/logs
+2019-11-29 12:28:49,699 [main] INFO  DVLauncher  - ===== Source DB Details =====
+2019-11-29 12:28:49,699 [main] INFO  DVLauncher  - Type : DB2LUW
+2019-11-29 12:28:49,700 [main] INFO  DVLauncher  - Version : 11
+2019-11-29 12:28:49,700 [main] INFO  DVLauncher  - Host : mhvredhat6
+2019-11-29 12:28:49,700 [main] INFO  DVLauncher  - User : ilqa
+2019-11-29 12:28:49,700 [main] INFO  DVLauncher  - Password : ilqa
+2019-11-29 12:28:49,701 [main] INFO  DVLauncher  - Port : 50000
+2019-11-29 12:28:49,701 [main] INFO  DVLauncher  - DBName : ilr6111p
+2019-11-29 12:28:49,701 [main] INFO  DVLauncher  - ===== Target DB Details =====
+2019-11-29 12:28:49,701 [main] INFO  DVLauncher  - Type : DB2LUW
+2019-11-29 12:28:49,702 [main] INFO  DVLauncher  - Version : 11
+2019-11-29 12:28:49,703 [main] INFO  DVLauncher  - Host : mhvredhat6
+2019-11-29 12:28:49,703 [main] INFO  DVLauncher  - User : ilqa
+2019-11-29 12:28:49,704 [main] INFO  DVLauncher  - Password : ilqa
+2019-11-29 12:28:49,705 [main] INFO  DVLauncher  - Port : 50000
+2019-11-29 12:28:49,705 [main] INFO  DVLauncher  - DBName : ilr6111p
+2019-11-29 12:28:51,458 [main] INFO  DVLauncher  - ===== Data Verification Starting ... =====
+2019-11-29 12:28:51,460 [main] INFO  DVLauncher  - >> Starting verification for source-table =  ilqasrc.dv_src and target-table = ilqatgt.ilqasrc.dv_src<< 
+2019-11-29 12:28:51,864 [main] INFO  DVLauncher  - Success: row-count for source-table ilqasrc.dv_src = 5
+2019-11-29 12:28:52,222 [main] INFO  DVLauncher  - Fail: row-count for target-table ilqatgt.ilqasrc.dv_src = -1

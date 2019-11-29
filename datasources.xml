@@ -1,0 +1,71 @@
+<databases>
+	<instance id="my_ora">
+		<type>ORACLE</type>
+		<version>12.1</version>
+		<host>mhvlx7pwx01</host>
+		<user>aniket</user>
+		<pwd>aniket</pwd>
+		<port>1521</port>
+		<dbname>rhqa7121</dbname>
+	</instance>
+
+	<instance id="mss_16_rds">
+		<type>MSSQL</type>
+		<version>16</version>
+		<host>pwxqa-rds-mssql-2016.cdztqno64b6m.us-east-1.rds.amazonaws.com</host>
+		<user>aniket</user>
+		<pwd>aniket</pwd>
+		<port>1433</port>
+		<dbname>AniketDB</dbname>
+	</instance>
+
+	<instance id="mss_17_rds">
+		<type>MSSQL</type>
+		<version>17</version>
+		<host>pwxqa-rds-mssql-2017.cdztqno64b6m.us-east-1.rds.amazonaws.com</host>
+		<user>aniket</user>
+		<pwd>aniket</pwd>
+		<port>1433</port>
+		<dbname>AniketDB</dbname>
+	</instance>
+
+	<instance id="mss_14_rds">
+		<type>MSSQL</type>
+		<version>14</version>
+		<host>pwxqa-rds-mssql-2014.cdztqno64b6m.us-east-1.rds.amazonaws.com</host>
+		<user>aniket</user>
+		<pwd>aniket</pwd>
+		<port>1433</port>
+		<dbname>AniketDB</dbname>
+	</instance>
+	
+	<instance id="my_udb">
+		<type>DB2LUW</type>
+		<version>11</version>
+		<host>mhvredhat6</host>
+		<user>ilqa</user>
+		<pwd>ilqa</pwd>
+		<port>50000</port>
+		<dbname>ilr6111p</dbname>
+	</instance>
+		<instance id="my_pgs">
+		<type>PGS</type>
+		<version>11</version>
+		<host>mhvr16db02</host>
+		<user>ilqa</user>
+		<pwd>ilqa</pwd>
+		<port>5432</port>
+		<dbname>pwxtest</dbname>
+		
+	</instance>
+		<instance id="my_mss">
+		<type>MSSQL</type>
+		<version>2016</version>
+		<host>mhv16rndqa01</host>
+		<user>stqa</user>
+		<pwd>stqa</pwd>
+		<port>1433</port>
+		<dbname>uxqa</dbname>
+	</instance>
+
+</databases>

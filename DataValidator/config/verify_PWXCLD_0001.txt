@@ -1,0 +1,11 @@
+test_id=pwx_mss_datatype_0001
+src_id=my_ora
+tgt_id=my_ora
+src_schema=aniket
+tgt_schema=akadam
+tb_map=[
+{ora0001(#15,pk,col2,col3) : ora0002(#15,pk,col2,col3)};
+{ora0003(#10,pk,col1,col4) : ora0004(#10,pk,col1,col2)};
+{ora0005(#10,*) : ora0006(#10,*)}
+]
+log_dir=C:/logs
