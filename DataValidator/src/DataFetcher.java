@@ -80,8 +80,8 @@ public class DataFetcher {
 		    	src_row.setCharAt(src_row.length()-1,'\"');
 		    	tgt_row.setCharAt(tgt_row.length()-1, '\"');
 		    	
-		    	log.info("-> src row: "+src_row);
-		    	log.info("-> tgt row: "+tgt_row);
+		    	log.info(" src row: "+src_row);
+		    	log.info(" tgt row: "+tgt_row);
 		    	
 		    	if(src_row.toString().equals(tgt_row.toString())){
 		    	log.info("Success: rows match!" );

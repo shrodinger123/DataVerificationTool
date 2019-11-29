@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="lib/postgresql-42.2.8.jar"/>
 	<classpathentry kind="lib" path="lib/ojdbc7.jar"/>
 	<classpathentry kind="lib" path="lib/mssql-jdbc-7.4.1.jre8-shaded.jar"/>
+	<classpathentry kind="lib" path="lib/json-simple-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

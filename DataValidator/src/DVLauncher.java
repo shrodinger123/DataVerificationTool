@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -13,9 +14,11 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 import org.apache.log4j.RollingFileAppender;
+import org.json.simple.JSONObject;
+
 import java.text.SimpleDateFormat;
 public class DVLauncher {
-	
+	private static DVJsonParser dvjp;
 	private static String test_id;
 	private static String src_id;
 	private static String tgt_id;
@@ -52,19 +55,21 @@ public class DVLauncher {
 		String testconf=args[0];
 		
 		/* Read config files and assign values to variables */
-		parseTestConfig(args[0]);
+		//parseTestConfig(args[0]);
+		parserJsonTestConfig(args[0]);
 		
 		/* Set logging requirements */
 		setLogging();
 		
 		/* From src_id fetch db details from datasources.xml */
-		getSourceDBDetails();
+		/*getSourceDBDetails();
 		
 		/* From tgt_id fetch db details from datasources.xml */
-		getTargetDBDetails();
+		/*getTargetDBDetails();
 			
 		/* Print test details to log file */
-		printTestDetails();
+		//printTestDetails();
+		printTestDetailsNew();
 		
 		/* get source db connection and test */
 		getSrcDbConn();
@@ -73,12 +78,38 @@ public class DVLauncher {
 		getTgtDbConn();
 		
 		/* Parse source and target tables to be compared */
-		parseTableMapping();
+		//parseTableMapping();
 		
 		/* Verify data for each source-target table pair */
 		
-		verifyData();
+		//verifyData();
+		verifyDataNew();
 		 
+	}
+	
+	private static void parserJsonTestConfig(String testConfFile) {
+		
+		dvjp = new DVJsonParser(testConfFile);
+		
+		test_id = dvjp.getTestID();
+		log_dir = dvjp.getLogDir();
+		
+		src_db_type = dvjp.getSrcDBType();
+		src_db_version = dvjp.getSrcDBVersion();
+		src_db_host = dvjp.getSrcDBHost();
+		src_db_port = dvjp.getSrcDBPort();
+		src_db_name = dvjp.getSrcDBName();
+		src_db_user = dvjp.getSrcDBUser();
+		src_db_pwd = dvjp.getSrcDBPwd();
+		
+		tgt_db_type = dvjp.getTgtDBType();
+		tgt_db_version = dvjp.getTgtDBVersion();
+		tgt_db_host = dvjp.getTgtDBHost();
+		tgt_db_port = dvjp.getTgtDBPort();
+		tgt_db_name = dvjp.getTgtDBName();
+		tgt_db_user = dvjp.getTgtDBUser();
+		tgt_db_pwd = dvjp.getTgtDBPwd();
+		
 	}
 	
 	private static void getSrcDbConn() {
@@ -125,12 +156,38 @@ public class DVLauncher {
 
 	private static void printTestDetails() {
 		log.info("===== Test Details =====");
-	    log.info("TestID : "+test_id);
+	    log.info("Test ID : "+test_id);
 	    log.info("SrcID : "+src_id);
 	    log.info("TgtID : "+tgt_id);
 	    log.info("Source Schema : "+src_schema);
 	    log.info("Target Schema : "+tgt_schema);
 	    log.info("Table Mapping : "+tb_map);
+	    log.info("Log Dir : "+log_dir);
+	    
+	    log.info("===== Source DB Details =====");
+		log.info("Type : "+src_db_type );
+		log.info("Version : "+src_db_version );
+		log.info("Host : "+src_db_host );
+		log.info("User : "+src_db_user );
+		log.info("Password : "+src_db_pwd );
+		log.info("Port : "+src_db_port );
+		log.info("DBName : "+src_db_name );
+		
+		log.info("===== Target DB Details =====");
+		log.info("Type : "+tgt_db_type );
+		log.info("Version : "+tgt_db_version );
+		log.info("Host : "+tgt_db_host );
+		log.info("User : "+tgt_db_user );
+		log.info("Password : "+tgt_db_pwd );
+		log.info("Port : "+tgt_db_port );
+		log.info("DBName : "+tgt_db_name );
+		
+	}
+	
+	
+	private static void printTestDetailsNew() {
+		log.info("===== Test Details =====");
+	    log.info("Test ID : "+test_id);
 	    log.info("Log Dir : "+log_dir);
 	    
 	    log.info("===== Source DB Details =====");
@@ -183,17 +240,17 @@ public class DVLauncher {
 
 
 
-	private static void getSourceDBDetails() {
-		// TODO Auto-generated method stub
-		DBParser xp = new DBParser();
-		src_db_type = xp.getDbType(src_id);
-		src_db_version = xp.getDbVersion(src_id);
-		src_db_host = xp.getDbHost(src_id);
-		src_db_user = xp.getDbUser(src_id);
-		src_db_pwd = xp.getDbPwd(src_id);
-		src_db_port = xp.getDbPort(src_id);
-		src_db_name = xp.getDbName(src_id);		
-	}
+//	private static void getSourceDBDetails() {
+//		// TODO Auto-generated method stub
+//		DBParser xp = new DBParser();
+//		src_db_type = xp.getDbType(src_id);
+//		src_db_version = xp.getDbVersion(src_id);
+//		src_db_host = xp.getDbHost(src_id);
+//		src_db_user = xp.getDbUser(src_id);
+//		src_db_pwd = xp.getDbPwd(src_id);
+//		src_db_port = xp.getDbPort(src_id);
+//		src_db_name = xp.getDbName(src_id);		
+//	}
 	
 	private static void getTargetDBDetails() {
 		// TODO Auto-generated method stub
@@ -207,31 +264,31 @@ public class DVLauncher {
 		tgt_db_name = xp.getDbName(tgt_id);	
 	}
 
-
-	private static void parseTestConfig(String testconf) {
-		File configFile = new File(testconf);
-		 
-		try {
-		    FileReader reader = new FileReader(configFile);
-		    Properties props = new Properties();
-		    props.load(reader);
-		    
-		    test_id = props.getProperty("test_id");
-		    src_id = props.getProperty("src_id");
-		    tgt_id = props.getProperty("tgt_id");
-		    src_schema = props.getProperty("src_schema");
-		    tgt_schema = props.getProperty("tgt_schema");
-		    tb_map = props.getProperty("tb_map");
-		    log_dir = props.getProperty("log_dir");	
-		 
-		    
-		    reader.close();
-		} catch (FileNotFoundException ex) {
-		    // file does not exist
-		} catch (IOException ex) {
-		    // I/O error
-		}
-	}
+//
+//	private static void parseTestConfig(String testconf) {
+//		File configFile = new File(testconf);
+//		 
+//		try {
+//		    FileReader reader = new FileReader(configFile);
+//		    Properties props = new Properties();
+//		    props.load(reader);
+//		    
+//		    test_id = props.getProperty("test_id");
+//		    src_id = props.getProperty("src_id");
+//		    tgt_id = props.getProperty("tgt_id");
+//		    src_schema = props.getProperty("src_schema");
+//		    tgt_schema = props.getProperty("tgt_schema");
+//		    tb_map = props.getProperty("tb_map");
+//		    log_dir = props.getProperty("log_dir");	
+//		 
+//		    
+//		    reader.close();
+//		} catch (FileNotFoundException ex) {
+//		    // file does not exist
+//		} catch (IOException ex) {
+//		    // I/O error
+//		}
+//	}
 	
 	private static void parseTableMapping() {
 		
@@ -346,6 +403,93 @@ public class DVLauncher {
 		
 		
 	}
+	
+	
+private static void verifyDataNew() {
+		
+		log.info("===== Data Verification Starting ... =====");
+		Boolean result = true;
+		
+		/* Start data verification for each source-target table pair */
+		int test_count = dvjp.getTestCount();
+		for(int i=0;i<test_count;i++) {
+			
+			String src_tb_schema = dvjp.getSrcTbSchema(i);
+			String src_tb_name = dvjp.getSrcTbName(i);
+			src_tb_name = src_tb_schema+"."+src_tb_name;
+			String src_cols = dvjp.getSrcCols(i);
+			String src_order_by_cols = dvjp.getSrcOrderByCols(i);
+			String src_row_count = dvjp.getSrcRowCount(i);
+			
+			String tgt_tb_schema = dvjp.getTgtTbSchema(i);
+			String tgt_tb_name = dvjp.getTgtTbName(i);
+			tgt_tb_name = tgt_tb_schema+"."+tgt_tb_name;
+			String tgt_cols = dvjp.getTgtCols(i);
+			String tgt_order_by_cols = dvjp.getTgtOrderByCols(i);
+			String tgt_row_count = dvjp.getTgtRowCount(i);
+
+			/* Print information to log */
+			log.info(">> Starting verification for source-table =  "+src_tb_name+ " and target-table = "+tgt_tb_name+"<< ");
+						
+			int count=0;
+			DataFetcher df = new DataFetcher();
+			
+			/* Verify Row Count for source table */
+			count = df.verifyRowCount(src_db_conn, src_tb_name,src_row_count);
+			if(count==Integer.parseInt(src_row_count)) {
+				result=result&&true;
+				log.info("Success: row-count for source-table "+src_tb_name+ " = "+count);
+			}
+			else {
+				log.error("Fail: row-count for source-table "+src_tb_name+ " = "+count);
+				log.error("Aborting....");
+				closeDbConnections();
+				System.exit(1);
+				
+			}
+			
+			/* Verify Row Count for target table */
+			
+			count = df.verifyRowCount(tgt_db_conn, tgt_tb_name,tgt_row_count);
+			if(count==Integer.parseInt(tgt_row_count)) {
+				result=result&&true;
+				log.info("Success: row-count for target-table "+tgt_tb_name+ " = "+count);
+			}
+			else {
+				log.error("Fail: row-count for target-table "+tgt_tb_name+ " = "+count);
+				log.error("Aborting....");
+				closeDbConnections();
+				System.exit(1);
+			}
+			
+			/* Verify that source and target table data matches */
+			
+			result = result && df.verifyDataMatch(
+					src_db_conn,
+					src_db_type,
+					src_tb_name,
+					src_order_by_cols,
+					src_cols,
+					tgt_db_conn,
+					tgt_db_type,
+					tgt_tb_name,
+					tgt_order_by_cols,
+					tgt_cols);
+			
+			if(result) {
+				log.info("Success: source and targt table data matches.");
+			}
+			else {
+				log.error("Fail: source and target table data doesn't match");
+				log.error("Aborting....");
+				closeDbConnections();
+				System.exit(1);	
+				
+			}
+		}
+		closeDbConnections();
+	}
+		
 	
 	private static void closeDbConnections() {
 		try {

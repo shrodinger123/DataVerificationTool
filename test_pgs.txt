@@ -3,5 +3,5 @@ src_id=my_pgs
 tgt_id=my_pgs
 src_schema=src
 tgt_schema=src
-tb_map=[{datatype_allsupportedtypes#12#order_by=(pk)#cols=(*):datatype_allsupportedtypes#12#order_by=(pk)#cols=(*)}]
+tb_map=[{datatype_allsupportedtypes#12#order_by=(pk)#cols=(*):datatype_allsupportedtypes#11#order_by=(pk)#cols=(*)}]
 log_dir=C:/akadam/Work/PowerExchange/v1040/data_validation_tool/logs
