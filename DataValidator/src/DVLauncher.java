@@ -299,6 +299,7 @@ public class DVLauncher {
 			else {
 				log.error("Fail: row-count for source-table "+src_tb_name+ " = "+count);
 				log.error("Aborting....");
+				closeDbConnections();
 				System.exit(1);
 				
 			}
@@ -313,6 +314,7 @@ public class DVLauncher {
 			else {
 				log.error("Fail: row-count for target-table "+tgt_tb_name+ " = "+count);
 				log.error("Aborting....");
+				closeDbConnections();
 				System.exit(1);
 			}
 			
@@ -332,14 +334,27 @@ public class DVLauncher {
 			
 			if(result) {
 				log.info("Success: source and targt table data matches.");
+				closeDbConnections();
 			}
 			else {
 				log.error("Fail: source and target table data doesn't match");
 				log.error("Aborting....");
+				closeDbConnections();
 				System.exit(1);	
 			}
 		}
 		
+		
+	}
+	
+	private static void closeDbConnections() {
+		try {
+			src_db_conn.close();
+			tgt_db_conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

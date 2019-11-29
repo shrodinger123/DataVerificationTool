@@ -3,5 +3,5 @@ src_id=my_mss
 tgt_id=my_mss
 src_schema=stqa
 tgt_schema=stqa
-tb_map=[{dv_src#5#order_by=(pk)#cols=(pk,col1):dv_tgt#4#order_by=(pk)#cols=(pk,col1)}]
+tb_map=[{dv_src#5#order_by=(pk)#cols=(pk,col1):dv_tgt#5#order_by=(pk)#cols=(pk,col1)}]
 log_dir=C:/akadam/Work/PowerExchange/v1040/data_validation_tool/logs

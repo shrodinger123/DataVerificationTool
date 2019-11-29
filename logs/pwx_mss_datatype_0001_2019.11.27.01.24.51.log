@@ -1,8 +1,0 @@
-2019-11-27 01:24:51,996 [main] INFO  DVLauncher  - ===== Source DB Details =====
-2019-11-27 01:24:51,998 [main] INFO  DVLauncher  - Type : MSSQL
-2019-11-27 01:24:51,998 [main] INFO  DVLauncher  - Version : 16
-2019-11-27 01:24:51,998 [main] INFO  DVLauncher  - Host : 16
-2019-11-27 01:24:51,998 [main] INFO  DVLauncher  - User : aniket
-2019-11-27 01:24:51,999 [main] INFO  DVLauncher  - Password : aniket
-2019-11-27 01:24:51,999 [main] INFO  DVLauncher  - Port : 1433
-2019-11-27 01:24:52,000 [main] INFO  DVLauncher  - DBName : AniketDB
