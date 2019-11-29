@@ -297,7 +297,7 @@ public class DVLauncher {
 				log.info("Success: row-count for source-table "+src_tb_name+ " = "+count);
 			}
 			else {
-				log.error("Fail: row-count for source-table "+src_tb_name+ " = "+count);
+				log.info("Fail: row-count for source-table "+src_tb_name+ " = "+count);
 				log.error("Aborting....");
 				System.exit(1);
 				
@@ -311,33 +311,12 @@ public class DVLauncher {
 				log.info("Success: row-count for target-table "+tgt_tb_name+ " = "+count);
 			}
 			else {
-				log.error("Fail: row-count for target-table "+tgt_tb_name+ " = "+count);
+				log.info("Fail: row-count for target-table "+tgt_tb_name+ " = "+count);
 				log.error("Aborting....");
 				System.exit(1);
 			}
 			
-			/* Verify that source and target table data matches */
 			
-			result = result && df.verifyDataMatch(
-					src_db_conn,
-					src_db_type,
-					src_tb_name,
-					src_order_by_cols,
-					src_cols,
-					tgt_db_conn,
-					tgt_db_type,
-					tgt_tb_name,
-					tgt_order_by_cols,
-					tgt_cols);
-			
-			if(result) {
-				log.info("Success: source and targt table data matches.");
-			}
-			else {
-				log.error("Fail: source and target table data doesn't match");
-				log.error("Aborting....");
-				System.exit(1);	
-			}
 		}
 		
 		

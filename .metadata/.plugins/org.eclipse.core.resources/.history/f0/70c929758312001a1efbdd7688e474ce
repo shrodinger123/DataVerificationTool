@@ -1,9 +1,6 @@
 import java.sql.*;
-
-import org.apache.log4j.Logger;
 public class DataFetcher {
 
-	private static final Logger log = Logger.getLogger(DataFetcher.class);
 	public int verifyRowCount(Connection dbConn, String tbName, String rowCount ) {
 		int count = -1;
 

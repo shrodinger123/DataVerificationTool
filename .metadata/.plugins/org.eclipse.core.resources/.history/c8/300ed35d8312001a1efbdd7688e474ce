@@ -336,8 +336,7 @@ public class DVLauncher {
 			else {
 				log.error("Fail: source and target table data doesn't match");
 				log.error("Aborting....");
-				System.exit(1);	
-			}
+				System.exit(1);								
 		}
 		
 		

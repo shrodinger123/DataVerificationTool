@@ -326,7 +326,6 @@ public class DVLauncher {
 					src_cols,
 					tgt_db_conn,
 					tgt_db_type,
-					tgt_tb_name,
 					tgt_order_by_cols,
 					tgt_cols);
 			
@@ -334,10 +333,11 @@ public class DVLauncher {
 				log.info("Success: source and targt table data matches.");
 			}
 			else {
-				log.error("Fail: source and target table data doesn't match");
+				log.error("Fail: row-count for target-table "+tgt_tb_name+ " = "+count);
 				log.error("Aborting....");
-				System.exit(1);	
-			}
+				System.exit(1);
+				
+				
 		}
 		
 		
